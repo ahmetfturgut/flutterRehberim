@@ -5,7 +5,6 @@ import 'package:flutter_rehberim/advenced/sembast.dart';
 import 'package:flutter_rehberim/advenced/shared_preference.dart';
 import 'package:flutter_rehberim/animation/animated-align.dart';
 import 'package:flutter_rehberim/advenced/sqlite.dart';
-import 'package:flutter_rehberim/animation/animated-container.dart';
 import 'package:flutter_rehberim/animation/animated-cross-fade.dart';
 import 'package:flutter_rehberim/animation/animated-icons.dart';
 import 'package:flutter_rehberim/animation/animated-list.dart';
@@ -190,7 +189,7 @@ class _PreviewState extends State<Preview> {
     else if (widget.widgetKey == "Hive") {
       return HiveExample();
     }
-    else if (widget.widgetKey == "SteamBuilder") {
+    else if (widget.widgetKey == "StreamBuilder") {
       return StreamBuilderExample();
     }
     else if (widget.widgetKey == "SteamController") {

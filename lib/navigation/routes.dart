@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class Routes extends StatelessWidget {
   const Routes({Key key}) : super(key: key);
-
-  static const kRouteName = '/Routes';
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -100,17 +99,7 @@ class _PageThree extends MaterialPageRoute<String> {
                     onTap: () =>
                         Navigator.pop(context, 'kullanici3@example.com'),
                   ),
-                  Divider(),
-                  MaterialButton(
-                    child: Text('Ana Sayfaya Git'),
-                    onPressed: () {
-                      // Pops until reaching a route with that route name.
-                      Navigator.popUntil(
-                        context,
-                        ModalRoute.withName(Routes.kRouteName),
-                      );
-                    },
-                  ),
+                 
                 ],
               ),
             ),

@@ -14,7 +14,7 @@ class ListViewBuilder extends StatelessWidget {
           child: Text('$idx'),
         ),
         title: Text(
-          'Item $idx',
+          'Deger $idx',
           style: _biggerFont,
         ),
         trailing: Icon(Icons.dashboard),

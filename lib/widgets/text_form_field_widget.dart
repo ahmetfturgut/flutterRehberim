@@ -17,10 +17,10 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
   String _password;
 
   String _validateName(String value) {
-    if (value.isEmpty) return 'Name is required.';
+    if (value.isEmpty) return 'Ad alanı zorunludur.';
     final RegExp nameExp = new RegExp(r'^[A-Za-z ]+$');
     if (!nameExp.hasMatch(value))
-      return 'Please enter only alphabetical characters.';
+      return 'Lütfen yalnızca alfabetik karakterler girin.';
     return null;
   }
 
@@ -40,8 +40,8 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
               border: UnderlineInputBorder(),
               filled: true,
               icon: Icon(Icons.person),
-              hintText: 'What do people call you?',
-              labelText: 'Name *',
+              hintText: 'Adınızı giriniz',
+              labelText: 'Adınız *',
             ),
             onSaved: (String value) {
               this._name = value;
@@ -55,9 +55,9 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
               border: UnderlineInputBorder(),
               filled: true,
               icon: Icon(Icons.phone),
-              hintText: 'Where can we reach you?',
-              labelText: 'Phone Number *',
-              prefixText: '+86',
+              hintText: 'Telefon numaranızı giriniz',
+              labelText: 'Telefon *',
+              prefixText: '+90',
             ),
             keyboardType: TextInputType.phone,
             onSaved: (String value) {
@@ -75,7 +75,7 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
               border: UnderlineInputBorder(),
               filled: true,
               icon: Icon(Icons.email),
-              hintText: 'Your email address',
+              hintText: 'E-mail adresinizi giriniz',
               labelText: 'E-mail',
             ),
             keyboardType: TextInputType.emailAddress,
@@ -88,9 +88,9 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
           TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Tell us about yourself',
-              helperText: 'Keep it short, this is just a demo.',
-              labelText: 'Life story',
+              hintText: 'Bize kendinden bahset',
+              helperText: 'Kısa tutun, bu sadece bir demo.',
+              labelText: 'Hayat hikayeniz',
             ),
             maxLines: 3,
           ),
@@ -100,9 +100,8 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Salary',
-                prefixText: '\$',
-                suffixText: 'USD',
+                labelText: 'Maaş', 
+                suffixText: 'TL',
                 suffixStyle: TextStyle(color: Colors.green)),
             maxLines: 1,
           ),
@@ -110,8 +109,8 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
           // "Password" form.
           PasswordField(
             fieldKey: _passwordFieldKey,
-            helperText: 'No more than 8 characters.',
-            labelText: 'Password *',
+            helperText: 'En az 8 karakter giriniz.',
+            labelText: 'Şifre *',
             onFieldSubmitted: (String value) {
               setState(() {
                 this._password = value;
@@ -125,7 +124,7 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               filled: true,
-              labelText: 'Re-type password',
+              labelText: 'Şifre tekrar',
             ),
             maxLength: 8,
             obscureText: true,

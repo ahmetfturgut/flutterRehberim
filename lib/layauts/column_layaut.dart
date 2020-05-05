@@ -29,11 +29,11 @@ class _LColumnState extends State<LColumn> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    "Bu Column Widget - İtem1",
+                    "Column Widget - İtem1",
                     style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
                   Text(
-                    "Bu Column Widget - İtem2",
+                    "Column Widget - İtem2",
                     style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
                   Image.asset(
@@ -41,7 +41,7 @@ class _LColumnState extends State<LColumn> {
                     fit: BoxFit.fitHeight,
                   ),
                   Text(
-                    "Bu Column Widget - İtem4",
+                    "Column Widget - İtem4",
                     style: TextStyle(fontSize: 18, color: Colors.black),
                   ),
 

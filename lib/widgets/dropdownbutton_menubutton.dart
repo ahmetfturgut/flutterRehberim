@@ -9,10 +9,12 @@ class DropdownButtonExample extends StatefulWidget {
 
 class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   static const menuItems = <String>[
-    'One',
-    'Two',
-    'Three',
-    'Four',
+   "Karışık Pizza",
+                  "Pastırmalı Pizza",
+                  "Mexico Pizza",
+                  "İtalyan Pizza",
+                  "Anadolu Pizza",
+                  "Vejeteryan Pizza"
   ];
   final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
       .map(
@@ -31,7 +33,7 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   )
       .toList();
 
-  String _btn1SelectedVal = 'One';
+  String _btn1SelectedVal = 'Karışık Pizza';
   String _btn2SelectedVal;
   String _btn3SelectedVal;
 
@@ -39,8 +41,14 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Text('Üzerine tıkladığımız zaman açılan ve içerisinde seçim yaptığımız buton türlerini görmüşsünüzdür.'
+          ' Flutter’da bu buton türünün ismi Dropdown Button olarak karşımıza çıkıyor.'
+          ' Bizde pizza seçimi yaptıran bir dropdown button örneğini şimdi beraber yapalım.',style: TextStyle(fontSize: 16),),
+        ),
         ListTile(
-          title: Text('DropDownButton with default:'),
+          title: Text('DropDownButton:'),
           trailing: DropdownButton<String>(
             // Must be one of items.value.
             value: _btn1SelectedVal,
@@ -53,10 +61,10 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
           ),
         ),
         ListTile(
-          title: Text('DropDownButton with hint:'),
+          title: Text('DropDownButton + hint:'),
           trailing: DropdownButton(
             value: _btn2SelectedVal,
-            hint: Text('Choose'),
+            hint: Text('Seç'),
             onChanged: ((String newValue) {
               setState(() {
                 _btn2SelectedVal = newValue;

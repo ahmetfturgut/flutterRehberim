@@ -35,7 +35,7 @@ class CardExample extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: Text('Card 2 (with Inkwell effect on tap)'),
+                    child: Text('Card 2 + Inkwell'),
                   ),
                 ],
               ),
@@ -55,7 +55,7 @@ class CardExample extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: Text('Card 3 (with custom border radius)'),
+                  child: Text('Card 3 + Border radius'),
                 ),
               ],
             ),
@@ -83,7 +83,7 @@ class CardExample extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Card 4 (complex example)',
+                          'Card 4 Karışık',
                           style: Theme.of(context)
                               .textTheme
                               .headline
@@ -98,11 +98,11 @@ class CardExample extends StatelessWidget {
                 alignment: MainAxisAlignment.end,
                 children: <Widget>[
                   FlatButton(
-                    child: Text('SHARE'),
+                    child: Text('PAYLAŞ'),
                     onPressed: () {},
                   ),
                   FlatButton(
-                    child: Text('EXPLORE'),
+                    child: Text('KEŞFET'),
                     onPressed: () {},
                   ),
                 ],

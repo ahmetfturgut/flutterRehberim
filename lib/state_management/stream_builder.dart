@@ -16,7 +16,7 @@ class StreamBuilderExampleState extends State<StreamBuilderExample> {
   // seconds elapsed since the app is started. We simply print this stream value
   // out in command-line. The value shown on UI is this._timerValue.
   final Stream<int> _periodicStream =
-  Stream.periodic(Duration(milliseconds: 1000), (i) => i);
+      Stream.periodic(Duration(milliseconds: 1000), (i) => i);
   // Record of the latest stream value that we saw. Because the StreamBuilder is
   // rebuilt when we call setState(), and in the re-build we shouldn't increment
   // this._timerValue if the latest snapshot's value hasn't changed.
@@ -42,10 +42,12 @@ class StreamBuilderExampleState extends State<StreamBuilderExample> {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text("StreamBuilders can listen to a stream, and update UI "
-                  "according to the stream's latest snapshot value.\n\n"
-                  "In this demo we build a simple timer app by listening to a "
-                  "stream that updates every second.\n"),
+              Text(" StreamBuilder bir widget, adı üstünde de bir builder."
+                  " Yani stream’den gelen veriler hazır olduğunda ve her yeni veri geldiğinde, builder fonksiyonunu tekrar çağırıyor ve tekrar widget ağacını yaratıyor."
+                  " Bu sayede yeni verileri gösterebiliyorsunuz. Tekrar yaratmayı setState için de konuştuk, ufak ufak esas konuya geliyoruz."
+                  " Fakat sadece bu kadarla sınırlı değil, StreamBuilder size tam bir kontrol veriyor."
+                  " Çeşitli bağlantı durumlarında (snapshot.ConnectionState) ne olacağından, veri olmadığında (!snapshot.hasData) veya hata ile karşılaşıldığında (snapshot.hasError) ne olacağına kadar geniş yelpazede bir destek sunuyor."
+                  " initialData verip ilk başta ne göstereceğinizi de belirtebiliyorsunuz."),
               Card(child: _buildTimerUI()),
             ],
           );
@@ -71,7 +73,7 @@ class StreamBuilderExampleState extends State<StreamBuilderExample> {
             IconButton(
               icon: Icon(Icons.stop),
               onPressed: () => setState(
-                    () {
+                () {
                   this._timerValue = 0;
                   this._paused = true;
                 },

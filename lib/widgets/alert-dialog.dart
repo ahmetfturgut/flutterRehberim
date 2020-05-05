@@ -15,22 +15,22 @@ class _IAlertDialogState extends State<IAlertDialog> {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: Text("Title Widget"),
+                title: Text("Başlık"),
                 actions: <Widget>[
                   FlatButton(
-                    child: Text("Yes"),
+                    child: Text("Evet"),
                     onPressed: () => Navigator.pop(context),
                   ),
                   FlatButton(
-                    child: Text("No"),
+                    child: Text("Hayır"),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ],
-                content: Text("Content"),
+                content: Text("İçerik"),
               ),
             );
           },
-          child: Text("Show Dialog"),
+          child: Text("Dialog'u Göster"),
         ),
       ),
     );

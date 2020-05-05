@@ -151,7 +151,7 @@ class _WidgetPageState extends State<WidgetPage> {
       return "lib/advenced/local_file.dart";
     } else if (widgetKey == "Sembast") {
       return "lib/advenced/sembast.dart";
-    } else if (widgetKey == "SteamBuilder") {
+    } else if (widgetKey == "StreamBuilder") {
       return "lib/state_management/stream_builder.dart";
     } else if (widgetKey == "SteamController") {
       return "lib/state_management/stream_controller.dart";

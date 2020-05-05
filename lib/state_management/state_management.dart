@@ -31,12 +31,12 @@ class _StateManegementPageState extends State<StateManegementPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => WidgetPage(widgetKey: "SteamBuilder")));
+                          builder: (context) => WidgetPage(widgetKey: "StreamBuilder")));
                 },
                 child: Card(
                   child: Center(child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("SteamBuilder(timer app)"),
+                    child: Text("StreamBuilder(timer app)"),
                   )),
                   elevation: 5,
                 ),
