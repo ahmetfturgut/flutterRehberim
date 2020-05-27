@@ -23,6 +23,9 @@ ThemeData _buildLightTheme() {
     toggleableActiveColor: const Color(0xFF1E88E5),
     splashColor: Colors.white24,
     splashFactory: InkRipple.splashFactory,
+
+    floatingActionButtonTheme:
+        FloatingActionButtonThemeData(backgroundColor: Color(0xFFC3B59B)),
     accentColor: secondaryColor,
     canvasColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
@@ -63,7 +66,7 @@ ThemeData _buildDarkTheme() {
     backgroundColor: const Color(0xFF202124),
     errorColor: const Color(0xFFB00020),
     floatingActionButtonTheme:
-        FloatingActionButtonThemeData(backgroundColor: Colors.white),
+        FloatingActionButtonThemeData(backgroundColor: Colors.black),
     buttonTheme: ButtonThemeData(
       colorScheme: colorScheme,
       

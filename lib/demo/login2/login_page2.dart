@@ -11,7 +11,7 @@ class LoginPage2 extends StatefulWidget {
 
 class _LoginPage2State extends State<LoginPage2> {
   var isActive = true;
-  var formKey=GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +54,9 @@ class _LoginPage2State extends State<LoginPage2> {
                     )),
               ],
             ),
-
             Padding(
                 padding:
-                EdgeInsets.only(left: 17, right: 17, top: 50, bottom: 30),
+                    EdgeInsets.only(left: 17, right: 17, top: 50, bottom: 30),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -103,7 +102,6 @@ class _LoginPage2State extends State<LoginPage2> {
                         ))
                   ],
                 )),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -178,13 +176,13 @@ class _LoginPage2State extends State<LoginPage2> {
                     minWidth: 130.0,
                     height: 40.0,
                     child: RaisedButton(
-                        color: Color(0xff394a6d),
-                        onPressed: () {},
-                        child: const Text('Giriş',
-                            style:
-                            TextStyle(fontSize: 20, color: Colors.white)),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(6.0))),
+                      color: Color(0xff394a6d),
+                      onPressed: () {},
+                      child: const Text('Giriş',
+                          style: TextStyle(fontSize: 20, color: Colors.white)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(6.0)),
+                    ),
                   ),
                 ),
               ],

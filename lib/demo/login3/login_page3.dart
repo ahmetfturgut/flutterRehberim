@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoginPage3 extends StatelessWidget {
-
-   var modeDark;
+  var modeDark;
   LoginPage3({this.modeDark});
   @override
   Widget build(BuildContext context) {
@@ -12,14 +11,14 @@ class LoginPage3 extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.4,
-            decoration: new BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10.0),
                 bottomRight: Radius.circular(10.0),
-              ), 
-              image: new DecorationImage(
+              ),
+              image: DecorationImage(
                 alignment: Alignment.bottomCenter,
-                image: new AssetImage('assets/images/person4.jpg'),
+                image: AssetImage('assets/images/person4.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -62,9 +61,7 @@ class LoginPage3 extends StatelessWidget {
                       child: RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.blue)
-                            
-                        ),
+                            side: BorderSide(color: Colors.blue)),
                         onPressed: () {},
                         padding: EdgeInsets.only(left: 84, right: 84),
                         child: Text("GİRİŞ YAP"),

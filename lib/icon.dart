@@ -113,6 +113,9 @@ class _WidgetPageState extends State<WidgetPage> {
       return "lib/appbar/backdrop.dart";
     } else if (widgetKey == "Tabs") {
       return "lib/navigation/tabs.dart";
+    }
+    else if (widgetKey == "Routes") {
+      return "lib/navigation/routes.dart";
     } else if (widgetKey == "Dialogs") {
       return "lib/navigation/dialogs.dart";
     } else if (widgetKey == "Navigation Drawer") {

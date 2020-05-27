@@ -4,6 +4,7 @@ import 'package:flutter_rehberim/demo/login1/login_page1.dart';
 import 'package:flutter_rehberim/demo/login2/login_page2.dart';
 import 'package:flutter_rehberim/demo/login3/login_page3.dart';
 import 'package:flutter_rehberim/demo/login4/login_page4.dart';
+import 'package:flutter_rehberim/demo/login5/login_page5.dart';
  
 
 class MyDemo extends StatefulWidget {
@@ -108,6 +109,26 @@ class _MyDemoState extends State<MyDemo> {
                              borderRadius: BorderRadius.all(Radius.circular(5)),
                           image: DecorationImage(
                             image: AssetImage("assets/images/ekran4.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                   InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => LoginPage5()));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                             borderRadius: BorderRadius.all(Radius.circular(5)),
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/login5.png"),
                             fit: BoxFit.cover,
                           ),
                         ),

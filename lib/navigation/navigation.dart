@@ -15,14 +15,14 @@ class _NavigationState extends State<Navigation> {
         title: Text("Navigation"),
       ),
       body: Container(
-          decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/35.jpg"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/35.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Padding(
-          padding: const EdgeInsets.only(top:18.0,left: 10,right: 10),
+          padding: const EdgeInsets.only(top: 18.0, left: 10, right: 10),
           child: GridView.count(
             crossAxisCount: 3,
             children: <Widget>[
@@ -43,7 +43,8 @@ class _NavigationState extends State<Navigation> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => WidgetPage(widgetKey: "Dialogs")));
+                          builder: (context) =>
+                              WidgetPage(widgetKey: "Dialogs")));
                 },
                 child: Card(
                   child: Center(child: Text("Dialogs")),
@@ -55,7 +56,8 @@ class _NavigationState extends State<Navigation> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => WidgetPage(widgetKey: "Routes")));
+                          builder: (context) =>
+                              WidgetPage(widgetKey: "Routes")));
                 },
                 child: Card(
                   child: Center(child: Text("Routes")),
