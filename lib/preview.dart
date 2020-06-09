@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rehberim/advenced/hive.dart';
 import 'package:flutter_rehberim/advenced/local_file.dart';
 import 'package:flutter_rehberim/advenced/sembast.dart';
 import 'package:flutter_rehberim/advenced/shared_preference.dart';
@@ -186,9 +185,9 @@ class _PreviewState extends State<Preview> {
     else if (widget.widgetKey == "Sembast") {
       return SembastExample();
     }
-    else if (widget.widgetKey == "Hive") {
-      return HiveExample();
-    }
+    // else if (widget.widgetKey == "Hive") {
+    //   return HiveExample();
+    // }
     else if (widget.widgetKey == "StreamBuilder") {
       return StreamBuilderExample();
     }

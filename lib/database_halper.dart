@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rehberim/models/kategori.dart';
 import 'package:flutter_rehberim/models/notlar.dart';

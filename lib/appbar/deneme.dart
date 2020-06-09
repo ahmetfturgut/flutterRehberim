@@ -74,7 +74,7 @@ class _SqliteState extends State<Sqlite> {
   Future<void> _kategoriEkle(Kategori kategori) async {
     await this._db.transaction(
           (Transaction txn) async {
-        int id = await txn.rawInsert('''
+         await txn.rawInsert('''
           INSERT INTO $tabloAdi
             (content, isDone, createdAt)
           VALUES
@@ -89,7 +89,7 @@ class _SqliteState extends State<Sqlite> {
   }
 
   Future<void> _kategoriGuncelle(Kategori kategori) async {
-    int count = await this._db.rawUpdate(
+    await this._db.rawUpdate(
       /*sql=*/
       '''UPDATE $tabloAdi
                     SET isDone = ?
@@ -100,7 +100,7 @@ class _SqliteState extends State<Sqlite> {
   }
 
   Future<void> _kategoriSil(Kategori kategori) async {
-    final count = await this._db.rawDelete('''
+     await this._db.rawDelete('''
         DELETE FROM $tabloAdi
         WHERE id = ${kategori.id}
       ''');

@@ -1,52 +1,25 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart'; 
-import 'package:flutter_rehberim/Profil/myProfilRouter.dart';
+import 'package:flutter_rehberim/Profil/myProfilRouter.dart'; 
+import 'package:flutter_rehberim/about.dart';
 import 'package:flutter_rehberim/my_body.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter_rehberim/my_advenced.dart';
 import 'package:flutter_rehberim/my_demo.dart';
 import 'package:flutter_rehberim/themes.dart';
-import 'package:flutter_rehberim/utils/user_repository.dart';
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
-import 'package:provider/provider.dart';
-import './utils.dart';
+import 'package:flutter_rehberim/utils/user_repository.dart'; 
+import 'package:provider/provider.dart'; 
 
-void main() => runApp(MyApp());
-
+void main() { 
+  runApp(MyApp());
+}
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  static final List<Widget> kAboutListTiles = <Widget>[
-    ListTile(
-      title: Text(APP_DESCRIPTION),
-    ),
-    Divider(),
-    ListTile(
-      leading: Icon(Icons.bug_report),
-      title: Text('GitHub Hesabım'),
-      onTap: () => url_launcher.launch('$GITHUB_URL'),
-    ),
-    ListTile(
-      leading: Icon(Icons.open_in_new),
-      title: Text('Kişisel Web Sitem'),
-      onTap: () => url_launcher.launch(AUTHOR_SITE),
-    ),
-    ListTile(
-      leading: Icon(Icons.shop),
-      title: Text('Google Play'),
-      onTap: () => url_launcher.launch(GOOGLEPLAY_URL),
-    ),
-  ];
-
-  final header = ListTile(
-    leading: kAppIcon,
-    title: Text(APP_NAME),
-    subtitle: Text(APP_VERSION),
-  );
 
   int _currentTabIndex = 0;
   bool modeDark = false;
@@ -54,9 +27,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<UserRepository>(
+      providers: [ 
+             ChangeNotifierProvider<UserRepository>(
             create: (context) => UserRepository()),
+            
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -124,8 +98,8 @@ class _MyAppState extends State<MyApp> {
           backLayer: Center(
               child: ListView(
             children: <Widget>[
-              header,
-              ...kAboutListTiles,
+              MyAbout.header,
+              ...MyAbout.kAboutListTiles,
               ListTile(
                 leading:
                     Icon(modeDark ? Icons.brightness_4 : Icons.brightness_7),

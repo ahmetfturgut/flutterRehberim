@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Flutter UI Catalog</string>
+    <string name="facebook_app_id">929934580806617</string>
+<string name="fb_login_protocol_scheme">fb929934580806617</string>
+
+</resources>
+
+
+ 

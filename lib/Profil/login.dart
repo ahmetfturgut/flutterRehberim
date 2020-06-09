@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_rehberim/utils.dart';
 import 'package:flutter_rehberim/utils/user_repository.dart';
 import 'package:flushbar/flushbar.dart';
+
 class MyLoginPage extends StatefulWidget {
   @override
   _MyLoginPageState createState() => _MyLoginPageState();
@@ -18,7 +19,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _email = TextEditingController(text: "");
@@ -30,115 +30,119 @@ class _MyLoginPageState extends State<MyLoginPage> {
     final userRepo = Provider.of<UserRepository>(context);
     return Scaffold(
       key: _scaffoldKey,
-      body: Padding(
-        padding: const EdgeInsets.only(top: 28.0),
-        child: Container(
-          child: Column(
-            children: <Widget>[
-              Center(
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  child: kAppIcon,
-                ),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: Form(
-                  key: _formKey,
-                  child: Center(
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            controller: _email,
-                            validator: (deger) {
-                              if (deger.length <= 0) {
-                                return "lütfen alanı doldurunuz";
-                              }
-                            },
-                            decoration: InputDecoration(
-                                labelText: "Email",
-                                border: OutlineInputBorder()),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: TextFormField(
-                            obscureText: isActive,
-                            controller: _sifre,
-                            validator: (deger) {
-                              if (deger.length <= 0) {
-                                return "lütfen alanı doldurunuz";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              suffixIcon: InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      isActive = !isActive;
-                                    });
-                                  },
-                                  child: Icon(Icons.lock)),
-                              labelText: "Şifre",
-                              border: OutlineInputBorder(),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(22.0),
-                          child: RaisedButton(
-                            onPressed: () async {
-                              if (_formKey.currentState.validate()) {
-                                if (!await userRepo.signIn(
-                                    _email.text, _sifre.text)) {
-                                  Flushbar(
-                                       icon: Icon(Icons.error,color: Colors.blue,),
-                                    flushbarPosition: FlushbarPosition.TOP,
-                                    title: "HATAAAAAA",
-                                    message:
-                                        "Hatalı Email veya Şifre",
-                                    duration: Duration(seconds: 5),
-                                    isDismissible: false,
-                                  )..show(context);
-                                }
-                              }
-                            },
-                            child: Text(
-                              "Giriş Yap",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            color: Colors.blue,
-                          ),
-                        ),
-                        Center(
-                          child: Padding(
-                              padding: const EdgeInsets.all(18.0),
-                              child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                MyRegisterPage()));
-                                  },
-                                  child: Text(
-                                    "Kayıt Ol",
-                                    style: TextStyle(
-                                        color: Colors.green, fontSize: 18),
-                                  ))),
-                        ),
-                      ],
-                    ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 88.0),
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    child: kAppIcon,
                   ),
                 ),
-              )
-            ],
+                SizedBox(
+                  height: 40,
+                ),
+                Container(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        child: RaisedButton(
+                          onPressed: () {
+                            userRepo.signInWithGoogle(_email.text, _sifre.text);
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(16),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset("assets/images/google-logo.png"),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 38.0),
+                                child: Text(
+                                  "Gmail ile Giriş Yap",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ],
+                          ),
+                          color: Colors.white,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        child: RaisedButton(
+                          onPressed: () {
+                            userRepo.signInWithFacebook(
+                                _email.text, _sifre.text);
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(16),
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                "assets/images/facebook-logo.png",
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 38.0),
+                                child: Text(
+                                  "Facebook ile Giriş Yap",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                          color: Color(0xFF334D92),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 22),
+                        child: RaisedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  fullscreenDialog: true,
+                                  builder: (context) => MyRegisterPage(),
+                                ),
+                              );
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.email),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 38.0),
+                                  child: Text(
+                                    "Email ve Şifre ile Giriş yap",
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            color: Color(0xFFC3B59B)),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
