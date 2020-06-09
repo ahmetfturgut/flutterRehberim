@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rehberim/demo/login1/forgot_pass1.dart';
-import 'package:flutter_rehberim/demo/login1/register_page1.dart';
 
 class LoginPage2 extends StatefulWidget {
   var modeDark;
@@ -106,35 +104,36 @@ class _LoginPage2State extends State<LoginPage2> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 2.0,
-                          color: Color(0xFF3b5998),
-                          offset: Offset(0.0, 2.0),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 2.0,
+                        color: Color(0xFF3b5998),
+                        offset: Offset(0.0, 2.0),
+                      ),
+                    ],
+                    color: Color(0xFF3b5998),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset(
+                        'assets/images/facebook_logo.png',
+                        height: 34,
+                        width: 34,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 4, right: 6),
+                        child: Text(
+                          'Facebook ile giriş',
+                          style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
-                      ],
-                      color: Color(0xFF3b5998),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Image.asset(
-                          'assets/images/facebook_logo.png',
-                          height: 34,
-                          width: 34,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 4, right: 6),
-                          child: Text(
-                            'Facebook ile giriş',
-                            style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        )
-                      ],
-                    )),
+                      )
+                    ],
+                  ),
+                ),
                 Container(
                     decoration: BoxDecoration(
                       boxShadow: [

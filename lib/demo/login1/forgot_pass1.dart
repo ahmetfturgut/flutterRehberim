@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rehberim/demo/login1/login_page1.dart';
-import 'package:flutter_rehberim/demo/login1/register_page1.dart';
 
 class ForgotPas1 extends StatefulWidget {
   var modeDark;
