@@ -79,35 +79,35 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           color: Colors.white,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 22),
-                        child: RaisedButton(
-                          onPressed: () {
-                            userRepo.signInWithFacebook(
-                                _email.text, _sifre.text);
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(16),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                "assets/images/facebook-logo.png",
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 38.0),
-                                child: Text(
-                                  "Facebook ile Giriş Yap",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
-                          color: Color(0xFF334D92),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.symmetric(horizontal: 22),
+                      //   child: RaisedButton(
+                      //     onPressed: () {
+                      //       userRepo.signInWithFacebook(
+                      //           _email.text, _sifre.text);
+                      //     },
+                      //     shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.all(
+                      //         Radius.circular(16),
+                      //       ),
+                      //     ),
+                      //     child: Row(
+                      //       children: [
+                      //         Image.asset(
+                      //           "assets/images/facebook-logo.png",
+                      //         ),
+                      //         Padding(
+                      //           padding: const EdgeInsets.only(left: 38.0),
+                      //           child: Text(
+                      //             "Facebook ile Giriş Yap",
+                      //             style: TextStyle(color: Colors.white),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //     color: Color(0xFF334D92),
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 22),
                         child: RaisedButton(

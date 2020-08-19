@@ -1,36 +1,35 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart'; 
-import 'package:flutter_rehberim/Profil/myProfilRouter.dart'; 
+import 'package:flutter/material.dart';
+import 'package:flutter_rehberim/Profil/myProfilRouter.dart';
 import 'package:flutter_rehberim/about.dart';
 import 'package:flutter_rehberim/my_body.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter_rehberim/my_advenced.dart';
 import 'package:flutter_rehberim/my_demo.dart';
 import 'package:flutter_rehberim/themes.dart';
-import 'package:flutter_rehberim/utils/user_repository.dart'; 
-import 'package:provider/provider.dart'; 
+import 'package:flutter_rehberim/utils/user_repository.dart';
+import 'package:provider/provider.dart';
 
-void main() { 
+void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   int _currentTabIndex = 0;
   bool modeDark = false;
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ 
-             ChangeNotifierProvider<UserRepository>(
+      providers: [
+        ChangeNotifierProvider<UserRepository>(
             create: (context) => UserRepository()),
-            
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -100,19 +99,19 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               MyAbout.header,
               ...MyAbout.kAboutListTiles,
-              ListTile(
-                leading:
-                    Icon(modeDark ? Icons.brightness_4 : Icons.brightness_7),
-                title: Text("Karanlık Mod"),
-                trailing: Switch(
-                  onChanged: (bool value) {
-                    setState(() {
-                      modeDark = value;
-                    });
-                  },
-                  value: modeDark,
-                ),
-              )
+              // ListTile(
+              //   leading:
+              //       Icon(modeDark ? Icons.brightness_4 : Icons.brightness_7),
+              //   title: Text("Karanlık Mod"),
+              //   trailing: Switch(
+              //     onChanged: (bool value) {
+              //       setState(() {
+              //         modeDark = value;
+              //       });
+              //     },
+              //     value: modeDark,
+              //   ),
+              // )
             ],
           )),
         ),
