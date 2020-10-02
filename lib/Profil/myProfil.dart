@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rehberim/Profil/myProfileDetail.dart';
 import 'package:flutter_rehberim/utils.dart';
 import 'package:flutter_rehberim/utils/user_repository.dart';
 import 'package:provider/provider.dart';
@@ -26,8 +27,8 @@ class MyProfil extends StatelessWidget {
               Stack(
                 children: <Widget>[
                   Container(
-                      width: double.infinity,
-                      height: 230,
+                    width: double.infinity,
+                    height: 230,
                   ),
                   Positioned(
                     top: 10,
@@ -35,6 +36,19 @@ class MyProfil extends StatelessWidget {
                     child: Icon(
                       Icons.settings,
                       color: Colors.white,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(33.0),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.edit,
+                        size: 33,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MyProfilDetail()));
+                      },
                     ),
                   ),
                   Column(
@@ -182,27 +196,19 @@ class UserInfo extends StatelessWidget {
                           userRepo.user.email,
                         ),
                       ),
-                      ListTile(
-                          leading: Icon(Icons.share),
-                          title: Text("Uygulamayı Paylaş"),
-                          trailing: InkWell(
-                            onTap: (){
-                              // A builder is used to retrieve the context immediately
-                              // surrounding the RaisedButton.
-                              //
-                              // The context's `findRenderObject` returns the first
-                              // RenderObject in its descendent tree when it's not
-                              // a RenderObjectWidget. The RaisedButton's RenderObject
-                              // has its position and size after it's built.
-                              final RenderBox box = context.findRenderObject();
-                              Share.share(GOOGLEPLAY_URL,
-                                  subject: "Flutter UI Project",
-                                  sharePositionOrigin:
-                                      box.localToGlobal(Offset.zero) &
-                                          box.size);
-                            },
-                            child: Icon(Icons.arrow_forward),
-                          )),
+                      InkWell(
+                        onTap: () {
+                          final RenderBox box = context.findRenderObject();
+                          Share.share(GOOGLEPLAY_URL,
+                              subject: "Flutter UI Project",
+                              sharePositionOrigin:
+                                  box.localToGlobal(Offset.zero) & box.size);
+                        },
+                        child: ListTile(
+                            leading: Icon(Icons.share),
+                            title: Text("Uygulamayı Paylaş"),
+                            trailing: Icon(Icons.arrow_forward)),
+                      ),
                       // ListTile(
                       //   leading: Icon(Icons.person),
                       //   title: Text("About Me"),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rehberim/appbar/appbar.dart'; 
+import 'package:flutter_rehberim/appbar/appbar.dart';
 import 'package:flutter_rehberim/layauts/layauts.dart';
 import 'package:flutter_rehberim/lists/lists.dart';
 import 'package:flutter_rehberim/navigation/navigation.dart';
@@ -37,8 +37,7 @@ class MyBasic extends StatelessWidget {
                           Text(
                             "Widgets",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
+                                fontWeight: FontWeight.bold, fontSize: 22),
                           )
                         ],
                       ),
@@ -63,8 +62,7 @@ class MyBasic extends StatelessWidget {
                               child: Text(
                                 "Layouts",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22),
+                                    fontWeight: FontWeight.bold, fontSize: 22),
                               ),
                             )
                           ],
@@ -87,8 +85,7 @@ class MyBasic extends StatelessWidget {
                           Text(
                             "Lists",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
+                                fontWeight: FontWeight.bold, fontSize: 22),
                           )
                         ],
                       ),
@@ -114,8 +111,7 @@ class MyBasic extends StatelessWidget {
                           Text(
                             "Appbar",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
+                                fontWeight: FontWeight.bold, fontSize: 22),
                           )
                         ],
                       ),
@@ -127,7 +123,6 @@ class MyBasic extends StatelessWidget {
                           builder: (context) => Navigation()));
                     },
                     child: Card(
-                      
                       elevation: 6,
                       child: Column(
                         children: <Widget>[
@@ -139,8 +134,7 @@ class MyBasic extends StatelessWidget {
                           Text(
                             "Navigation",
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
+                                fontWeight: FontWeight.bold, fontSize: 22),
                           )
                         ],
                       ),

@@ -47,13 +47,11 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
         ? "Hesabınız Yok Mu? Kayıt Olun"
         : "Hesabınız Var Mı? Giriş Yapın";
 
-  if (userRepo.durum == UserDurum.OturumAcik) {
+    if (userRepo.durum == UserDurum.OturumAcik) {
       Future.delayed(Duration(milliseconds: 1), () {
         Navigator.of(context).popUntil(ModalRoute.withName("/"));
       });
     }
-
-
 
     return Scaffold(
       key: _scaffoldKey,
@@ -143,7 +141,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                                                     await userRepo
                                                         .signInWithEmailandPassword(
                                                             _email.text,
-                                                            _sifre.text); 
+                                                            _sifre.text);
                                               } on PlatformException catch (e) {
                                                 PlatformDuyarliAlertDialog(
                                                   baslik: "Oturum Açma HATA",
@@ -158,7 +156,7 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                                                     await userRepo
                                                         .createUserWithEmailAndPassword(
                                                             _email.text,
-                                                            _sifre.text); 
+                                                            _sifre.text);
                                               } on PlatformException catch (e) {
                                                 PlatformDuyarliAlertDialog(
                                                   baslik:
@@ -175,7 +173,6 @@ class _MyRegisterPageState extends State<MyRegisterPage> {
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
-                                          color: Colors.green,
                                         ),
                                       ),
                                       Center(
