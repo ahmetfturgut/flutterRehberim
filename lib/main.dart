@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'dart:wasm';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rehberim/Profil/myProfilRouter.dart';
@@ -38,8 +39,16 @@ class _MyAppState extends State<MyApp> {
         home: BackdropScaffold(
           title: Text('Flutter Rehberi'),
           iconPosition: BackdropIconPosition.action,
-          headerHeight: 120.0,
+          headerHeight: 1.0,
           frontLayer: Scaffold(
+            floatingActionButton: FloatingActionButton(
+              child: Icon(modeDark ? Icons.brightness_4 : Icons.brightness_7),
+              onPressed: () {
+                setState(() {
+                  modeDark = !modeDark;
+                });
+              },
+            ),
             bottomNavigationBar: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
@@ -99,19 +108,6 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               MyAbout.header,
               ...MyAbout.kAboutListTiles,
-              // ListTile(
-              //   leading:
-              //       Icon(modeDark ? Icons.brightness_4 : Icons.brightness_7),
-              //   title: Text("Karanlık Mod"),
-              //   trailing: Switch(
-              //     onChanged: (bool value) {
-              //       setState(() {
-              //         modeDark = value;
-              //       });
-              //     },
-              //     value: modeDark,
-              //   ),
-              // )
             ],
           )),
         ),
