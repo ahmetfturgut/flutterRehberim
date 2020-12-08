@@ -21,25 +21,25 @@ class MyProfil extends StatelessWidget {
                     width: double.infinity,
                     height: 230,
                   ),
-                  Positioned(
-                    top: 10,
-                    right: 30,
-                    child: Icon(
-                      Icons.settings,
-                      color: Colors.white,
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: 10,
+                  //   right: 30,
+                  //   child: Icon(
+                  //     Icons.settings,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
                   Column(
                     children: <Widget>[
                       Container(
-                        height: 130,
-                        margin: EdgeInsets.only(top: 60),
+                        height: 230,
+                        margin: EdgeInsets.only(top: 10),
                         child: Image(
-                          image: new AssetImage('assets/images/avatar.jpg'),
+                          image: new AssetImage('assets/images/man.png'),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(4),
+                        padding: EdgeInsets.only(top: 24),
                       ),
                       Text(
                         "Ahmet Faruk Turgut",
@@ -51,7 +51,7 @@ class MyProfil extends StatelessWidget {
                         padding: EdgeInsets.all(4),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 48.0),
+                        padding: const EdgeInsets.only(top: 18.0),
                         child: UserInfo(userRepo: userRepo),
                       )
                     ],
@@ -86,15 +86,14 @@ class UserInfo extends StatelessWidget {
                     children: <Widget>[
                       ListTile(
                         leading: Icon(Icons.person),
-                        title: Text("About Me"),
-                        subtitle: Text("Software Developer."),
+                        title: Text("Software Developer"),
                       ),
                       ListTile(
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                         leading: Icon(Icons.my_location),
-                        title: Text("İstanbul"),
-                        subtitle: Text("Türkiye"),
+                        title: Text("Türkiye"),
+                        subtitle: Text("İstanbul"),
                       ),
                       ListTile(
                         leading: Icon(Icons.email),

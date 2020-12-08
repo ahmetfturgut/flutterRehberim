@@ -90,59 +90,17 @@ class UserRepository with ChangeNotifier {
     }
   }
 
-
-
-  Future<User> createUserWithEmailAndPassword(String email, String sifre) async {
- AuthResult sonuc = await _auth.createUserWithEmailAndPassword(
+  Future<User> createUserWithEmailAndPassword(
+      String email, String sifre) async {
+    AuthResult sonuc = await _auth.createUserWithEmailAndPassword(
         email: email, password: sifre);
     return _userFromFirebase(sonuc.user);
   }
-
 
   Future<User> signInWithEmailandPassword(String email, String sifre) async {
- AuthResult sonuc = await _auth.signInWithEmailAndPassword(
-        email: email, password: sifre);
+    AuthResult sonuc =
+        await _auth.signInWithEmailAndPassword(email: email, password: sifre);
     return _userFromFirebase(sonuc.user);
-  }
-
-
-
-
-
-
-  Future<User> signInWithFacebook(String email, String sifre) async {
-    final _facebookLogin = FacebookLogin();
-
-    FacebookLoginResult _faceResult = await _facebookLogin
-        .logInWithReadPermissions(['public_profile', 'email']);
-
-    switch (_faceResult.status) {
-      case FacebookLoginStatus.loggedIn:
-        if (_faceResult.accessToken != null &&
-            _faceResult.accessToken.isValid()) {
-          AuthResult _firebaseResult = await _auth.signInWithCredential(
-              FacebookAuthProvider.getCredential(
-                  accessToken: _faceResult.accessToken.token));
-
-          FirebaseUser _user = _firebaseResult.user;
-          return _userFromFirebase(_user);
-        } else {
-          /* print("access token valid :" +
-              _faceResult.accessToken.isValid().toString());*/
-        }
-
-        break;
-
-      case FacebookLoginStatus.cancelledByUser:
-        print("kullanıcı facebook girişi iptal etti");
-        break;
-
-      case FacebookLoginStatus.error:
-        print("Hata cıktı :" + _faceResult.errorMessage);
-        break;
-    }
-
-    return null;
   }
 
   Future<bool> signIn(String email, String sifre) async {
@@ -157,21 +115,12 @@ class UserRepository with ChangeNotifier {
       return false;
     }
   }
- 
 
+  Future signOut() async {
+    final _googleSignIn = GoogleSignIn();
+    await _googleSignIn.signOut();
 
-
-
-  Future signOut() async { 
-     final _facebookLogin = FacebookLogin();
-      await _facebookLogin.logOut();
-
-      final _googleSignIn = GoogleSignIn();
-      await _googleSignIn.signOut();
-      
-
-
-      await _auth.signOut(); 
+    await _auth.signOut();
     _durum = UserDurum.OturumAcilmamis;
     notifyListeners();
     return Future.delayed(Duration.zero);
@@ -199,5 +148,4 @@ class UserRepository with ChangeNotifier {
         .then((v) => debugPrint("Kullanıcı başarıyla eklendi."))
         .catchError((error) => debugPrint("Kullanıcı eklenemedi. $error"));
   }
-  
 }

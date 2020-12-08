@@ -1,6 +1,4 @@
 import 'dart:ui';
-import 'dart:wasm';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rehberim/Profil/myProfilRouter.dart';
 import 'package:flutter_rehberim/about.dart';
@@ -55,26 +53,29 @@ class _MyAppState extends State<MyApp> {
                   //backgroundColor: Colors.blue,
                   backgroundColor:
                       modeDark ? Color(0xFF616161) : Color(0xFFC3B89B),
-                  icon: Icon(Icons.library_books),
-                  title: Text('Temel'),
+                  icon: Icon(Icons.library_books, color: Colors.white),
+                  title: Text('Temel', style: TextStyle(color: Colors.white)),
                 ),
                 BottomNavigationBarItem(
                   backgroundColor:
                       modeDark ? Color(0xFF757575) : Color(0xFFC3B59B),
-                  icon: Icon(Icons.insert_chart),
-                  title: Text('İleri'),
+                  icon: Icon(Icons.insert_chart, color: Colors.white),
+                  title: Text('İleri', style: TextStyle(color: Colors.white)),
                 ),
                 BottomNavigationBarItem(
                   backgroundColor:
                       modeDark ? Color(0xFF757575) : Color(0xFFC3B59B),
-                  icon: Icon(Icons.developer_board),
-                  title: Text('Demo'),
+                  icon: Icon(Icons.developer_board, color: Colors.white),
+                  title: Text('Demo', style: TextStyle(color: Colors.white)),
                 ),
                 BottomNavigationBarItem(
                   backgroundColor:
                       modeDark ? Color(0xFF757575) : Color(0xFFC3B59B),
-                  icon: Icon(Icons.account_circle),
-                  title: Text('Profil'),
+                  icon: Icon(Icons.account_circle, color: Colors.white),
+                  title: Text(
+                    'Profil',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
               currentIndex: _currentTabIndex,
