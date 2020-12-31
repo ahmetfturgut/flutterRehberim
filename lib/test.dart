@@ -1,225 +1,288 @@
 // import 'dart:async';
+// import 'dart:io';
 
-// import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-// import 'package:firebase_database/firebase_database.dart';
-// import 'package:firebase_database/ui/firebase_animated_list.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 // import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:intl/intl.dart';
+// import 'package:dash_chat/dash_chat.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:rflutter_alert/rflutter_alert.dart';
 
-// import './firebase_login_ex.dart' show kFirebaseAnalytics;
-
-// // NOTE: to add firebase support, first go to firebase console, generate the
-// // firebase json file, and add configuration lines in the gradle files.
-// // C.f. this commit: https://github.com/X-Wei/flutter_catalog/commit/48792cbc0de62fc47e0e9ba2cd3718117f4d73d1.
-// class FirebaseChatroomExample extends StatefulWidget {
-//   const FirebaseChatroomExample({Key key}) : super(key: key);
-
+// class Chat extends StatefulWidget {
 //   @override
-//   _FirebaseChatroomExampleState createState() =>
-//       _FirebaseChatroomExampleState();
+//   _ChatState createState() => _ChatState();
 // }
 
-// class _FirebaseChatroomExampleState extends State<FirebaseChatroomExample> {
-//   firebase_auth.User _user;
-//   DatabaseReference _firebaseMsgDbRef;
+// String userName;
 
-//   final TextEditingController _textController = TextEditingController();
-//   bool _isComposing = false;
+// class _ChatState extends State<Chat> {
+//   final GlobalKey<DashChatState> _chatViewKey = GlobalKey<DashChatState>();
+//   TextEditingController nameController = new TextEditingController();
+//   SharedPreferences _prefs;
+
+//   ChatUser user;
+
+//   final ChatUser otherUser = ChatUser(
+//     name: "Diger",
+//     uid: "25649654",
+//   );
+
+//   List<ChatMessage> messages = List<ChatMessage>();
+//   var m = List<ChatMessage>();
+
+//   var i = 0;
 
 //   @override
 //   void initState() {
+//     SharedPreferences.getInstance()
+//       ..then((prefs) {
+//         setState(() => this._prefs = prefs);
+//         getName();
+//         setChatName();
+//       });
+
 //     super.initState();
-//     final now = DateTime.now().toUtc();
-//     this._firebaseMsgDbRef = FirebaseDatabase.instance
-//         .reference()
-//         .child('messages/${now.year}/${now.month}/${now.day}');
-//     this._user = firebase_auth.FirebaseAuth.instance.currentUser;
+//   }
+
+//   void systemMessage() {
+//     Timer(Duration(milliseconds: 300), () {
+//       if (i < 6) {
+//         setState(() {
+//           messages = [...messages, m[i]];
+//         });
+//         i++;
+//       }
+//       Timer(Duration(milliseconds: 300), () {
+//         _chatViewKey.currentState.scrollController
+//           ..animateTo(
+//             _chatViewKey.currentState.scrollController.position.maxScrollExtent,
+//             curve: Curves.easeOut,
+//             duration: const Duration(milliseconds: 300),
+//           );
+//       });
+//     });
+//   }
+
+//   void onSend(ChatMessage message) async {
+//     if (userName == "") {
+//       Alert(
+//           context: context,
+//           title: "GİRİŞ",
+//           content: TextField(
+//             controller: nameController,
+//             decoration: InputDecoration(
+//               icon: Icon(Icons.account_circle),
+//               labelText: 'Nick Name',
+//             ),
+//           ),
+//           buttons: [
+//             DialogButton(
+//               onPressed: () {
+//                 setName(nameController.text);
+//                 Navigator.pop(context);
+//               },
+//               child: Text(
+//                 "Kaydet",
+//                 style: TextStyle(color: Colors.white, fontSize: 20),
+//               ),
+//             )
+//           ]).show();
+//     } else {
+//       var documentReference = Firestore.instance
+//           .collection('messages')
+//           .document(DateTime.now().millisecondsSinceEpoch.toString());
+
+//       await Firestore.instance.runTransaction((transaction) async {
+//         await transaction.set(
+//           documentReference,
+//           message.toJson(),
+//         );
+//       });
+//       /* setState(() {
+//                       messages = [...messages, message];
+//                       print(messages.length);
+//                     });
+
+//                     if (i == 0) {
+//                       systemMessage();
+//                       Timer(Duration(milliseconds: 600), () {
+//                         systemMessage();
+//                       });
+//                     } else {
+//                       systemMessage();
+//                     } */
+//     }
 //   }
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       resizeToAvoidBottomPadding: false,
-//       appBar: AppBar(
-//         backgroundColor: Colors.red,
-//         leading: IconButton(
-//           icon: const Icon(Icons.info),
-//           onPressed: () => _showNoteDialog(context),
-//         ),
-//         title: SingleChildScrollView(
-//           scrollDirection: Axis.horizontal,
-//           child: Text(_user == null
-//               ? 'Chatting'
-//               : 'Chatting as "${_user.displayName}"'),
-//         ),
-//       ),
-//       body: Center(
-//         child: Column(
-//           children: <Widget>[
-//             _buildMessagesList(),
-//             const Divider(height: 2.0),
-//             _buildComposeMsgRow()
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   void _showNoteDialog(BuildContext context) {
-//     showDialog(
-//       context: context,
-//       builder: (ctx) => AlertDialog(
-//         title: const Text('Note'),
-//         content: const Text('This chat room is only for demo purposes.\n\n'
-//             'The chat messages are publicly available, and they '
-//             'can be deleted at any time by the firebase admin.\n\n'
-//             'To send messages, you must log in '
-//             'in the "Firebase login" demo.'),
-//         actions: <Widget>[
-//           FlatButton(
-//             onPressed: () => Navigator.of(ctx).pop(),
-//             child: const Text('OK'),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-
-//   // Builds the list of chat messages.
-//   Widget _buildMessagesList() {
-//     return Flexible(
-//       child: Scrollbar(
-//         child: FirebaseAnimatedList(
-//           defaultChild: const Center(child: CircularProgressIndicator()),
-//           query: _firebaseMsgDbRef,
-//           sort: (a, b) => b.key.compareTo(a.key),
-//           padding: const EdgeInsets.all(8.0),
-//           reverse: true,
-//           itemBuilder: (BuildContext ctx, DataSnapshot snapshot,
-//                   Animation<double> animation, int idx) =>
-//               _messageFromSnapshot(snapshot, animation),
-//         ),
-//       ),
-//     );
-//   }
-
-//   // Returns the UI of one message from a data snapshot.
-//   Widget _messageFromSnapshot(
-//       DataSnapshot snapshot, Animation<double> animation) {
-//     final senderName = snapshot.value['senderName'] as String ?? '?? <unknown>';
-//     final msgText = snapshot.value['text'] as String ?? '??';
-//     final sentTime = snapshot.value['timestamp'] as int ?? 0;
-//     final senderPhotoUrl = snapshot.value['senderPhotoUrl'] as String;
-//     final messageUI = Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 10.0),
-//       child: Row(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: <Widget>[
-//           Padding(
-//             padding: const EdgeInsets.only(right: 8.0),
-//             child: senderPhotoUrl != null
-//                 ? CircleAvatar(
-//                     backgroundImage: NetworkImage(senderPhotoUrl),
-//                   )
-//                 : CircleAvatar(
-//                     child: Text(senderName[0]),
+//       body: StreamBuilder(
+//           stream: Firestore.instance.collection('messages').snapshots(),
+//           builder: (context, snapshot) {
+//             if (!snapshot.hasData) {
+//               return Center(
+//                 child: CircularProgressIndicator(
+//                   valueColor: AlwaysStoppedAnimation<Color>(
+//                     Theme.of(context).primaryColor,
 //                   ),
-//           ),
-//           Flexible(
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: <Widget>[
-//                 Text(senderName, style: Theme.of(context).textTheme.subtitle1),
-//                 Text(
-//                   DateTime.fromMillisecondsSinceEpoch(sentTime).toString(),
-//                   style: Theme.of(context).textTheme.caption,
 //                 ),
-//                 Text(msgText),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//     return SizeTransition(
-//       sizeFactor: CurvedAnimation(
-//         parent: animation,
-//         curve: Curves.easeOut,
-//       ),
-//       child: messageUI,
+//               );
+//             } else {
+//               List<DocumentSnapshot> items = snapshot.data.documents;
+//               var messages =
+//                   items.map((i) => ChatMessage.fromJson(i.data)).toList();
+//               return DashChat(
+//                 key: _chatViewKey,
+//                 onSend: onSend,
+//                 sendOnEnter: true,
+//                 textInputAction: TextInputAction.send,
+//                 user: user,
+//                 inputDecoration: InputDecoration(hintText: "Question ?"),
+//                 dateFormat: DateFormat('yyyy-MMM-dd'),
+//                 timeFormat: DateFormat('HH:mm'),
+//                 messages: messages,
+//                 showUserAvatar: true,
+//                 onPressAvatar: (ChatUser user) {
+//                   Alert(
+//                       context: context,
+//                       title: "GİRİŞ",
+//                       content: TextField(
+//                         controller: nameController,
+//                         decoration: InputDecoration(
+//                           icon: Icon(Icons.account_circle),
+//                           labelText: userName,
+//                         ),
+//                       ),
+//                       buttons: [
+//                         DialogButton(
+//                           onPressed: () {
+//                             setName(nameController.text);
+
+//                             Navigator.pop(context);
+//                           },
+//                           child: Text(
+//                             "Kaydet",
+//                             style: TextStyle(color: Colors.white, fontSize: 20),
+//                           ),
+//                         )
+//                       ]).show();
+//                 },
+//                 inputMaxLines: 5,
+//                 messageContainerPadding: EdgeInsets.only(left: 5.0, right: 5.0),
+//                 alwaysShowSend: true,
+//                 inputTextStyle: TextStyle(fontSize: 16.0),
+//                 inputContainerStyle: BoxDecoration(
+//                   border: Border.all(width: 0.0),
+//                   color: Colors.white,
+//                 ),
+//                 onQuickReply: (Reply reply) {
+//                   setState(() {
+//                     messages.add(ChatMessage(
+//                         text: reply.value,
+//                         createdAt: DateTime.now(),
+//                         user: user));
+
+//                     messages = [...messages];
+//                   });
+
+//                   Timer(Duration(milliseconds: 300), () {
+//                     _chatViewKey.currentState.scrollController
+//                       ..animateTo(
+//                         _chatViewKey.currentState.scrollController.position
+//                             .maxScrollExtent,
+//                         curve: Curves.easeOut,
+//                         duration: const Duration(milliseconds: 300),
+//                       );
+
+//                     if (i == 0) {
+//                       systemMessage();
+//                       Timer(Duration(milliseconds: 600), () {
+//                         systemMessage();
+//                       });
+//                     } else {
+//                       systemMessage();
+//                     }
+//                   });
+//                 },
+//                 onLoadEarlier: () {
+//                   print("laoding...");
+//                 },
+//                 shouldShowLoadEarlier: false,
+//                 showTraillingBeforeSend: true,
+//                 trailing: <Widget>[
+//                   IconButton(
+//                     icon: Icon(Icons.photo),
+//                     onPressed: () async {
+//                       File result = await ImagePicker.pickImage(
+//                         source: ImageSource.gallery,
+//                         imageQuality: 80,
+//                         maxHeight: 400,
+//                         maxWidth: 400,
+//                       );
+
+//                       if (result != null) {
+//                         final StorageReference storageRef =
+//                             FirebaseStorage.instance.ref().child("chat_images");
+
+//                         StorageUploadTask uploadTask = storageRef.putFile(
+//                           result,
+//                           StorageMetadata(
+//                             contentType: 'image/jpg',
+//                           ),
+//                         );
+//                         StorageTaskSnapshot download =
+//                             await uploadTask.onComplete;
+
+//                         String url = await download.ref.getDownloadURL();
+
+//                         ChatMessage message =
+//                             ChatMessage(text: "", user: user, image: url);
+
+//                         var documentReference = Firestore.instance
+//                             .collection('messages')
+//                             .document(DateTime.now()
+//                                 .millisecondsSinceEpoch
+//                                 .toString());
+
+//                         Firestore.instance.runTransaction((transaction) async {
+//                           await transaction.set(
+//                             documentReference,
+//                             message.toJson(),
+//                           );
+//                         });
+//                       }
+//                     },
+//                   )
+//                 ],
+//               );
+//             }
+//           }),
 //     );
 //   }
 
-//   // Builds the row for composing and sending message.
-//   Widget _buildComposeMsgRow() {
-//     return Container(
-//       margin: const EdgeInsets.symmetric(horizontal: 4.0),
-//       decoration: BoxDecoration(color: Theme.of(context).cardColor),
-//       child: Row(
-//         crossAxisAlignment: CrossAxisAlignment.end,
-//         children: <Widget>[
-//           Flexible(
-//             child: TextField(
-//               keyboardType: TextInputType.multiline,
-//               // Setting maxLines=null makes the text field auto-expand when one
-//               // line is filled up.
-//               maxLines: null,
-//               maxLength: 200,
-//               decoration:
-//                   const InputDecoration.collapsed(hintText: "Send a message"),
-//               controller: _textController,
-//               onChanged: (String text) =>
-//                   setState(() => _isComposing = text.isNotEmpty),
-//               onSubmitted: _onTextMsgSubmitted,
-//             ),
-//           ),
-//           IconButton(
-//             icon: const Icon(Icons.send),
-//             onPressed: _isComposing
-//                 ? () => _onTextMsgSubmitted(_textController.text)
-//                 : null,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   // Triggered when text is submitted (send button pressed).
-//   Future<void> _onTextMsgSubmitted(String text) async {
-//     // Make sure _user is not null.
-//     if (this._user == null) {
-//       this._user = firebase_auth.FirebaseAuth.instance.currentUser;
-//     }
-//     if (this._user == null) {
-//       showDialog(
-//         context: context,
-//         builder: (ctx) => AlertDialog(
-//           title: const Text('Login required'),
-//           content: const Text('To send messages you need to first log in.\n\n'
-//               'Go to the "Firebase login" example, and log in from there. '
-//               'You will then be able to send messages.'),
-//           actions: <Widget>[
-//             FlatButton(
-//               onPressed: () => Navigator.of(ctx).pop(),
-//               child: const Text('OK'),
-//             )
-//           ],
-//         ),
-//       );
-//       return;
-//     }
-//     // Clear input text field.
-//     _textController.clear();
+//   void getName() {
 //     setState(() {
-//       _isComposing = false;
+//       userName = this._prefs.getString("name") ?? "";
 //     });
-//     // Send message to firebase realtime database.
-//     _firebaseMsgDbRef.push().set({
-//       'senderId': this._user.uid,
-//       'senderName': this._user.displayName,
-//       'senderPhotoUrl': this._user.photoURL,
-//       'text': text,
-//       'timestamp': DateTime.now().millisecondsSinceEpoch,
-//     });
-//     kFirebaseAnalytics.logEvent(name: 'send_message');
+//   }
+
+//   Future<Null> setName(String val) async {
+//     await this._prefs.setString("name", val);
+//     getName();
+//     setChatName();
+//   }
+
+//   void setChatName() {
+//     user = ChatUser(
+//       name: this._prefs.getString("name") ?? "",
+//       firstName: this._prefs.getString("name") ?? "",
+//       lastName: this._prefs.getString("name") ?? "",
+//       uid: "12345678",
+//       avatar:
+//           "https://firebasestorage.googleapis.com/v0/b/vueadminpanel.appspot.com/o/Portfoyler%2F0.jpg?alt=media&token=cbded8ef-8965-463f-9597-387dd6bba16f",
+//     );
 //   }
 // }

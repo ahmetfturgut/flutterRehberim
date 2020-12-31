@@ -1,10 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rehberim/codes.dart';
 import 'package:flutter_rehberim/preview.dart';
+import 'package:flutter_rehberim/services/advert_service.dart';
 import 'package:widget_with_codeview/source_code_view.dart';
-
 
 class WidgetPage extends StatefulWidget {
   String widgetKey;
@@ -17,6 +15,11 @@ class WidgetPage extends StatefulWidget {
 
 class _WidgetPageState extends State<WidgetPage> {
   var codes = Codes();
+  final AdvertService _advertService = AdvertService();
+  @override
+  void initState() {
+    _advertService.showIntersitial();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,6 @@ class _WidgetPageState extends State<WidgetPage> {
       Padding(
         padding: const EdgeInsets.all(18.0),
         child: SourceCodeView(
-          
           filePath: getCode(widget.widgetKey),
         ),
       ),
@@ -43,8 +45,14 @@ class _WidgetPageState extends State<WidgetPage> {
             tabs: _kTabs,
           ),
         ),
-        body: TabBarView(
-          children: _kTabPages,
+        body: Column(
+          children: [
+            Expanded(
+              child: TabBarView(
+                children: _kTabPages,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -113,8 +121,7 @@ class _WidgetPageState extends State<WidgetPage> {
       return "lib/appbar/backdrop.dart";
     } else if (widgetKey == "Tabs") {
       return "lib/navigation/tabs.dart";
-    }
-    else if (widgetKey == "Routes") {
+    } else if (widgetKey == "Routes") {
       return "lib/navigation/routes.dart";
     } else if (widgetKey == "Dialogs") {
       return "lib/navigation/dialogs.dart";
@@ -178,6 +185,20 @@ class _WidgetPageState extends State<WidgetPage> {
       return "lib/plugins/markdown_rendering.dart";
     } else if (widgetKey == "Local auth") {
       return "lib/plugins/local_auth.dart";
+    } else if (widgetKey == "TimeSeriesChart") {
+      return "lib/charts/chart_time_series.dart";
+    } else if (widgetKey == "PieChart") {
+      return "lib/charts/pie_chart.dart";
+    } else if (widgetKey == "LineChart") {
+      return "lib/charts/line_chart.dart";
+    } else if (widgetKey == "BarChart") {
+      return "lib/charts/bar_chart.dart";
+    } else if (widgetKey == "GraphView") {
+      return "lib/charts/graph_chart.dart";
+    } else if (widgetKey == "HeatmapCalender") {
+      return "lib/charts/heatmap_calender.dart";
+    } else if (widgetKey == "RadarChart") {
+      return "lib/charts/radar_chart.dart";
     }
   }
 }

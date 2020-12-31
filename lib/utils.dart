@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const APP_VERSION = '1.1';
+const APP_VERSION = '1.0.7';
 const APP_NAME = 'Flutter Rehberi';
 final kAppIcon =
     Image.asset('assets/images/logo.png', height: 64.0, width: 64.0);

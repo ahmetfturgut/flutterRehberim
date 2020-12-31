@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_rehberim/Profil/myProfilRouter.dart';
 import 'package:flutter_rehberim/about.dart';
+import 'package:flutter_rehberim/chat.dart';
 import 'package:flutter_rehberim/my_body.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:flutter_rehberim/my_advenced.dart';
@@ -39,14 +40,17 @@ class _MyAppState extends State<MyApp> {
           iconPosition: BackdropIconPosition.action,
           headerHeight: 1.0,
           frontLayer: Scaffold(
-            floatingActionButton: FloatingActionButton(
-              child: Icon(modeDark ? Icons.brightness_4 : Icons.brightness_7),
-              onPressed: () {
-                setState(() {
-                  modeDark = !modeDark;
-                });
-              },
-            ),
+            floatingActionButton: _currentTabIndex == 2
+                ? null
+                : FloatingActionButton(
+                    child: Icon(
+                        modeDark ? Icons.brightness_4 : Icons.brightness_7),
+                    onPressed: () {
+                      setState(() {
+                        modeDark = !modeDark;
+                      });
+                    },
+                  ),
             bottomNavigationBar: BottomNavigationBar(
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
@@ -61,6 +65,12 @@ class _MyAppState extends State<MyApp> {
                       modeDark ? Color(0xFF757575) : Color(0xFFC3B59B),
                   icon: Icon(Icons.insert_chart, color: Colors.white),
                   title: Text('İleri', style: TextStyle(color: Colors.white)),
+                ),
+                BottomNavigationBarItem(
+                  backgroundColor:
+                      modeDark ? Color(0xFF757575) : Color(0xFFC3B59B),
+                  icon: Icon(Icons.question_answer, color: Colors.white),
+                  title: Text('Chat', style: TextStyle(color: Colors.white)),
                 ),
                 BottomNavigationBarItem(
                   backgroundColor:
@@ -94,6 +104,7 @@ class _MyAppState extends State<MyApp> {
                       children: <Widget>[
                         MyBasic(),
                         MyAdvenced(),
+                        Chat(),
                         MyDemo(modeDark: modeDark),
                         MyProfilRouter()
                       ],

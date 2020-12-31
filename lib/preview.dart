@@ -15,6 +15,13 @@ import 'package:flutter_rehberim/appbar/backdrop.dart';
 import 'package:flutter_rehberim/appbar/basic_appbar.dart';
 import 'package:flutter_rehberim/appbar/bottom_appbar.dart';
 import 'package:flutter_rehberim/appbar/search_appbar.dart';
+import 'package:flutter_rehberim/charts/bar_chart.dart';
+import 'package:flutter_rehberim/charts/chart_time_series.dart';
+import 'package:flutter_rehberim/charts/graph_chart.dart';
+import 'package:flutter_rehberim/charts/heatmap_calender.dart';
+import 'package:flutter_rehberim/charts/line_chart.dart';
+import 'package:flutter_rehberim/charts/pie_chart.dart';
+import 'package:flutter_rehberim/charts/radar_chart.dart';
 import 'package:flutter_rehberim/plugins/image_picker.dart';
 import 'package:flutter_rehberim/plugins/local_auth.dart';
 import 'package:flutter_rehberim/plugins/markdown_rendering.dart';
@@ -149,40 +156,29 @@ class _PreviewState extends State<Preview> {
       return PageSelector();
     } else if (widget.widgetKey == "SQLite") {
       return Sqlite();
-    }else if (widget.widgetKey == "Alert Dialog") {
+    } else if (widget.widgetKey == "Alert Dialog") {
       return IAlertDialog();
-    }
-    else if (widget.widgetKey == "Animated Align") {
+    } else if (widget.widgetKey == "Animated Align") {
       return IAnimatedAlign();
-    }
-    else if (widget.widgetKey == "Animated Cross Fade") {
+    } else if (widget.widgetKey == "Animated Cross Fade") {
       return IAnimatedCrossFade();
-    }
-    else if (widget.widgetKey == "Animated Icons") {
+    } else if (widget.widgetKey == "Animated Icons") {
       return IAnimatedIcons();
-    }
-    else if (widget.widgetKey == "Animated List") {
+    } else if (widget.widgetKey == "Animated List") {
       return IAnimatedList();
-    }
-    else if (widget.widgetKey == "Animated Opacity") {
+    } else if (widget.widgetKey == "Animated Opacity") {
       return IAnimatedOpacity();
-    }
-    else if (widget.widgetKey == "Animated Padding") {
+    } else if (widget.widgetKey == "Animated Padding") {
       return IAnimatedPadding();
-    }
-    else if (widget.widgetKey == "Animated Psitioned") {
+    } else if (widget.widgetKey == "Animated Psitioned") {
       return IAnimatedPositioned();
-    }
-    else if (widget.widgetKey == "Animated Switcher") {
+    } else if (widget.widgetKey == "Animated Switcher") {
       return IAnimatedSwitcher();
-    }
-    else if (widget.widgetKey == "Shared preference") {
+    } else if (widget.widgetKey == "Shared preference") {
       return SharedPreference();
-    }
-    else if (widget.widgetKey == "Local file R/W") {
+    } else if (widget.widgetKey == "Local file R/W") {
       return FileReadWrite();
-    }
-    else if (widget.widgetKey == "Sembast") {
+    } else if (widget.widgetKey == "Sembast") {
       return SembastExample();
     }
     // else if (widget.widgetKey == "Hive") {
@@ -190,43 +186,42 @@ class _PreviewState extends State<Preview> {
     // }
     else if (widget.widgetKey == "StreamBuilder") {
       return StreamBuilderExample();
-    }
-    else if (widget.widgetKey == "SteamController") {
+    } else if (widget.widgetKey == "SteamController") {
       return StreamControllerExample();
-    }
-    else if (widget.widgetKey == "Inherited Widget") {
+    } else if (widget.widgetKey == "Inherited Widget") {
       return InheritedWidgetExample();
-    }
-    else if (widget.widgetKey == "Scoped Model") {
+    } else if (widget.widgetKey == "Scoped Model") {
       return ScopedModelExample();
-    }
-    else if (widget.widgetKey == "BLoC Pettern") {
+    } else if (widget.widgetKey == "BLoC Pettern") {
       return BlocExample();
-    }
-    else if (widget.widgetKey == "BLoC Pettern") {
+    } else if (widget.widgetKey == "BLoC Pettern") {
       return BlocExample();
-    }
-
-    else if (widget.widgetKey == "Easier BLoC Pettern") {
+    } else if (widget.widgetKey == "Easier BLoC Pettern") {
       return BlocLibExample();
-    }
-    else if (widget.widgetKey == "Provider") {
+    } else if (widget.widgetKey == "Provider") {
       return ProviderExample();
-    }
-    else if (widget.widgetKey == "Image Picker") {
+    } else if (widget.widgetKey == "Image Picker") {
       return ImagePickerExample();
-    }
-    else if (widget.widgetKey == "Web View") {
+    } else if (widget.widgetKey == "Web View") {
       return WebViewExample();
-    }
-    else if (widget.widgetKey == "Markdown rendering") {
+    } else if (widget.widgetKey == "Markdown rendering") {
       return MarkdownExample();
-    }
-    else if (widget.widgetKey == "Local auth") {
+    } else if (widget.widgetKey == "Local auth") {
       return LocalAuthExample();
+    } else if (widget.widgetKey == "TimeSeriesChart") {
+      return TimeseriesChartExample();
+    } else if (widget.widgetKey == "PieChart") {
+      return PieChartExample();
+    } else if (widget.widgetKey == "LineChart") {
+      return FlLineChartExample();
+    } else if (widget.widgetKey == "BarChart") {
+      return FlBarChartExample();
+    } else if (widget.widgetKey == "GraphView") {
+      return GraphViewExample();
+    } else if (widget.widgetKey == "HeatmapCalender") {
+      return HeatmapCalendarExample();
+    } else if (widget.widgetKey == "RadarChart") {
+      return RadarChartExample();
     }
-
-
-
   }
 }
