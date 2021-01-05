@@ -6,127 +6,101 @@ class ButtonsExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _showToast = () => Fluttertoast.showToast(
+    void _showToast() => Fluttertoast.showToast(
           msg: 'Button tapped',
           toastLength: Toast.LENGTH_SHORT,
         );
 
-    final _showSnack = () => Scaffold.of(context).showSnackBar(
-          SnackBar(
+    void _showSnack() => ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
             content: Text('Button tapped'),
             duration: Duration(milliseconds: 500),
           ),
         );
     return ListView(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       children: <Widget>[
         Column(
           children: <Widget>[
-            Text(
-                '  Her yerde gördüğümüz arka planında bir resim ve içerisinde bir yazı olan butonumuz işte bu. '
-                'Raised Button en sık kullandığımız buton türüdür..'),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-                ' Color : Butonumuzun rengidir. Eğer burada bir değer girmezsek butonumuz pasif olarak ekrana gelecektir.'),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-                ' HighlightColor : Butonumuzun tıklandıktan sonra elimiz butona basılıyken aldığı renktir.'),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-                ' Child : Butonumuzun içine alacağı widgetler burada girilir. Örnek vermek gerekirse resimde butonun içerisine sadece merhaba dünya yazdığımız için child olarak bir text widget verdik.'),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-                ' Padding : Buton içerisine eklediğimiz widget ile butonun arasındaki mesafedir..'),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-                ' OnPressed : Butonumuza tıklandıktan sonra nelerin olacağını buraya gireriz.'),
-            SizedBox(
-              height: 15,
-            ),
-            Text(' TextColor : Buton içerisindeki yazıların alacağı renktir.'),
-            SizedBox(
-              height: 15,
-            ),
-            Text(' Elevation : Butonumuzun etrafındaki gölge miktarıdır.'),
+            const Text(
+                'Raised buttons add dimension to mostly flat layouts. They '
+                'emphasize functions on busy or wide spaces.'),
             ButtonBar(
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 RaisedButton(
-                  child: Text('RaisedButton'),
                   onPressed: _showSnack,
+                  child: const Text('RaisedButton'),
                 ),
-                RaisedButton(
+                const RaisedButton(
+                  onPressed: null,
                   child: Text('disabled-RaisedButton'),
-                  onPressed: null,
                 ),
               ],
             ),
           ],
         ),
-        Divider(color:Colors.grey, thickness: 5,),
+        const Divider(),
         Column(
           children: <Widget>[
-            Text(
-                'Flat Button ise raised buttona göre bir arka plan rengi verilmediğinde dahi çalışabilen buton türüdür.'
-                ' Hatırlayacağınız üzere raised buttonda arka plana bir renk vermediğimiz zaman button otomatik olarak disabled geliyordu. Flat buttonda ise renk verilirse arka plana uygulanır ama verilmezse buton yine çalışır.'),
+            const Text('A flat button displays an ink splash on press '
+                'but does not lift. Use flat buttons on toolbars, in dialogs '
+                'and inline with padding'),
             ButtonBar(
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FlatButton(
-                  child: Text('FlatButton'),
                   onPressed: _showToast,
+                  child: const Text('FlatButton',
+                      style: TextStyle(color: Colors.black)),
                 ),
-                FlatButton(
+                const FlatButton(
+                  onPressed: null,
                   child: Text('disabled-FlatButton'),
-                  onPressed: null,
                 ),
               ],
             ),
           ],
         ),
-              Divider(color:Colors.grey, thickness: 5,),
+        const Divider(),
         Column(
           children: <Widget>[
-            Text(
-                'Floating Action Button’lar yuvarlak olarak oluşturulan butonlardır. Genellikle içerisine bir ikon olarak kullanılırlar. Ayrıca sık olarak scaffold içerisinde kullanılma özelliğine sahiptirler.'),
+            const Text(
+                'Outline buttons become opaque and elevate when pressed. They '
+                'are often paired with raised buttons to indicate an '
+                'alternative, secondary action.'),
             ButtonBar(
               alignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                FloatingActionButton(
-                  child: Icon(Icons.thumb_down),
-                  elevation: 10,
-                  backgroundColor: Colors.blue,
+                OutlineButton(
                   onPressed: _showToast,
+                  child: const Text('OutlineButton',
+                      style: TextStyle(color: Colors.black)),
                 ),
+                const OutlineButton(
+                  onPressed: null,
+                  child: Text('OutlineButton'),
+                )
               ],
             ),
-            SizedBox(height: 15,),
-            Text('Floating Action Button',style: TextStyle(fontWeight: FontWeight.bold),)
           ],
         ),
-             Divider(color:Colors.grey, thickness: 5,),
+        const Divider(),
         Column(
           children: <Widget>[
-            Text('Icon Button adından da anlaşılacağı üzere ikon şeklinde olan butonlarımızdır. İnstagram’da bulunan resim beğenme butonu veya bazı uygulamalarda bulunan ses artırıp azaltma butonları örnek verilebilir.'),
+            const Text(
+                'Tooltips are short identifying messages that briefly appear '
+                'in response to a long press. Tooltip messages are also used '
+                'by services that make Flutter apps accessible, like screen '
+                'readers.'),
             Center(
               child: IconButton(
                 iconSize: 32.0,
-                icon: Icon(Icons.call),
-                tooltip: 'Burası Tooltip',
+                icon: const Icon(Icons.call),
+                tooltip: 'Place a phone call',
                 onPressed: _showSnack,
               ),
-            ),Text('Icon Button’un şimdiye kadar gördüğümüz butonlara göre ayrılan özellikleri ise icon ve tooltip özelliği. Burada içerisine bir widget almak yerine direk icon aluyor.'
-            ' Tooltip ise butona tıkladığımızda alt kısımda çıkan küçük bir talimat yazısı olarak düşünebiliriz.')
+            )
           ],
         ),
       ],

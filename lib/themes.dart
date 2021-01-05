@@ -4,8 +4,8 @@ final kLightTheme = _buildLightTheme();
 final kDarkTheme = _buildDarkTheme();
 
 ThemeData _buildLightTheme() {
-  const Color primaryColor = Color(0xFFC3B59B);
-  const Color secondaryColor = Color(0xFF696969);
+  const Color primaryColor = Color(0xFFFAFBFD);
+  const Color secondaryColor = Color(0xFFFAFBFD);
 
   //  const Color primaryColor = Color(0xFF0175c2);
   // const Color secondaryColor = Color(0xFF13B9FD);
@@ -20,16 +20,16 @@ ThemeData _buildLightTheme() {
     primaryColor: primaryColor,
     buttonColor: primaryColor,
     indicatorColor: Colors.white,
-    toggleableActiveColor: const Color(0xFF1E88E5),
+    toggleableActiveColor: const Color(0xFFFAFBFD),
     splashColor: Colors.white24,
     splashFactory: InkRipple.splashFactory,
     floatingActionButtonTheme:
-        FloatingActionButtonThemeData(backgroundColor: Color(0xFFC3B59B)),
+        FloatingActionButtonThemeData(backgroundColor: Color(0xFFFAFBFD)),
     accentColor: secondaryColor,
     canvasColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
-    backgroundColor: Color(0xFFC3B59B),
-    errorColor: const Color(0xFFB00020),
+    backgroundColor: Color(0xFFFAFBFD),
+    errorColor: const Color(0xFFFAFBFD),
     buttonTheme: ButtonThemeData(
       colorScheme: colorScheme,
       textTheme: ButtonTextTheme.primary,

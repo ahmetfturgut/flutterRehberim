@@ -22,6 +22,7 @@ import 'package:flutter_rehberim/charts/heatmap_calender.dart';
 import 'package:flutter_rehberim/charts/line_chart.dart';
 import 'package:flutter_rehberim/charts/pie_chart.dart';
 import 'package:flutter_rehberim/charts/radar_chart.dart';
+import 'package:flutter_rehberim/multimedia/extendedImage.dart';
 import 'package:flutter_rehberim/plugins/image_picker.dart';
 import 'package:flutter_rehberim/plugins/local_auth.dart';
 import 'package:flutter_rehberim/plugins/markdown_rendering.dart';
@@ -223,5 +224,8 @@ class _PreviewState extends State<Preview> {
     } else if (widget.widgetKey == "RadarChart") {
       return RadarChartExample();
     }
+    // else if (widget.widgetKey == "ExtendedImage") {
+    // return ExtendedImageExample();
+    // }
   }
 }

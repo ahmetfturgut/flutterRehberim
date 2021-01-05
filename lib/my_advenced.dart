@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rehberim/advenced/persistence.dart';
 import 'package:flutter_rehberim/animation/animation.dart';
 import 'package:flutter_rehberim/charts/charts.dart';
+import 'package:flutter_rehberim/multimedia/multimedi.dart';
 import 'package:flutter_rehberim/plugins/plugins.dart';
 import 'package:flutter_rehberim/state_management/state_management.dart';
 
@@ -125,6 +126,29 @@ class MyAdvenced extends StatelessWidget {
                           ),
                           Text(
                             "Plugins",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Multimedia()));
+                    },
+                    child: Card(
+                      elevation: 6,
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            child: Icon(Icons.album),
+                            height: 100,
+                            width: 100,
+                          ),
+                          Text(
+                            "Multimedia",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 class TextFormFieldExample extends StatefulWidget {
   const TextFormFieldExample({Key key}) : super(key: key);
 
@@ -7,9 +8,11 @@ class TextFormFieldExample extends StatefulWidget {
   State<StatefulWidget> createState() => _TextFormFieldExampleState();
 }
 
+// Adapted from the text form demo in official gallery app:
+// https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/material/text_form_field_demo.dart
 class _TextFormFieldExampleState extends State<TextFormFieldExample> {
   final GlobalKey<FormFieldState<String>> _passwordFieldKey =
-  new GlobalKey<FormFieldState<String>>();
+      GlobalKey<FormFieldState<String>>();
 
   String _name;
   String _phoneNumber;
@@ -17,10 +20,11 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
   String _password;
 
   String _validateName(String value) {
-    if (value.isEmpty) return 'Ad alanı zorunludur.';
-    final RegExp nameExp = new RegExp(r'^[A-Za-z ]+$');
-    if (!nameExp.hasMatch(value))
-      return 'Lütfen yalnızca alfabetik karakterler girin.';
+    if (value.isEmpty) return 'Name is required.';
+    final RegExp nameExp = RegExp(r'^[A-Za-z ]+$');
+    if (!nameExp.hasMatch(value)) {
+      return 'Please enter only alphabetical characters.';
+    }
     return null;
   }
 
@@ -32,99 +36,102 @@ class _TextFormFieldExampleState extends State<TextFormFieldExample> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           // "Name" form.
           TextFormField(
             textCapitalization: TextCapitalization.words,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               filled: true,
               icon: Icon(Icons.person),
-              hintText: 'Adınızı giriniz',
-              labelText: 'Adınız *',
+              hintText: 'What do people call you?',
+              labelText: 'Name *',
             ),
             onSaved: (String value) {
               this._name = value;
+              print('name=$_name');
             },
             validator: _validateName,
           ),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           // "Phone number" form.
           TextFormField(
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               filled: true,
               icon: Icon(Icons.phone),
-              hintText: 'Telefon numaranızı giriniz',
-              labelText: 'Telefon *',
-              prefixText: '+90',
+              hintText: 'Where can we reach you?',
+              labelText: 'Phone Number *',
+              prefixText: '+86',
             ),
             keyboardType: TextInputType.phone,
             onSaved: (String value) {
               this._phoneNumber = value;
+              print('phoneNumber=$_phoneNumber');
             },
             // TextInputFormatters are applied in sequence.
             inputFormatters: <TextInputFormatter>[
-              WhitelistingTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.digitsOnly
             ],
           ),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           // "Email" form.
           TextFormField(
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               filled: true,
               icon: Icon(Icons.email),
-              hintText: 'E-mail adresinizi giriniz',
+              hintText: 'Your email address',
               labelText: 'E-mail',
             ),
             keyboardType: TextInputType.emailAddress,
             onSaved: (String value) {
               this._email = value;
+              print('email=$_email');
             },
           ),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           // "Life story" form.
           TextFormField(
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Bize kendinden bahset',
-              helperText: 'Kısa tutun, bu sadece bir demo.',
-              labelText: 'Hayat hikayeniz',
+              hintText: 'Tell us about yourself',
+              helperText: 'Keep it short, this is just a demo.',
+              labelText: 'Life story',
             ),
             maxLines: 3,
           ),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           // "Salary" form.
           TextFormField(
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Maaş', 
-                suffixText: 'TL',
+                labelText: 'Salary',
+                prefixText: '\$',
+                suffixText: 'USD',
                 suffixStyle: TextStyle(color: Colors.green)),
-            maxLines: 1,
           ),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           // "Password" form.
           PasswordField(
             fieldKey: _passwordFieldKey,
-            helperText: 'En az 8 karakter giriniz.',
-            labelText: 'Şifre *',
+            helperText: 'No more than 8 characters.',
+            labelText: 'Password *',
             onFieldSubmitted: (String value) {
               setState(() {
                 this._password = value;
               });
             },
           ),
-          SizedBox(height: 24.0),
+          const SizedBox(height: 24.0),
           // "Re-type password" form.
           TextFormField(
             enabled: this._password != null && this._password.isNotEmpty,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               filled: true,
-              labelText: 'Şifre tekrar',
+              labelText: 'Re-type password',
             ),
             maxLength: 8,
             obscureText: true,
@@ -155,7 +162,7 @@ class PasswordField extends StatefulWidget {
   final ValueChanged<String> onFieldSubmitted;
 
   @override
-  _PasswordFieldState createState() => new _PasswordFieldState();
+  _PasswordFieldState createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordField> {
@@ -163,32 +170,28 @@ class _PasswordFieldState extends State<PasswordField> {
 
   @override
   Widget build(BuildContext context) {
-    return new TextFormField(
+    return TextFormField(
       key: widget.fieldKey,
       obscureText: _obscureText,
       maxLength: 8,
       onSaved: widget.onSaved,
       validator: widget.validator,
       onFieldSubmitted: widget.onFieldSubmitted,
-      decoration: new InputDecoration(
+      decoration: InputDecoration(
         border: const UnderlineInputBorder(),
         filled: true,
         hintText: widget.hintText,
         labelText: widget.labelText,
         helperText: widget.helperText,
-        suffixIcon: new GestureDetector(
+        suffixIcon: GestureDetector(
           onTap: () {
             setState(() {
               _obscureText = !_obscureText;
             });
           },
-          child:
-          new Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
+          child: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
         ),
       ),
     );
   }
 }
-
-
-

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Inspired by dropdown buttons demo in offical flutter gallery:
+// https://github.com/flutter/flutter/blob/master/examples/flutter_gallery/lib/demo/material/buttons_demo.dart
 class DropdownButtonExample extends StatefulWidget {
   const DropdownButtonExample({Key key}) : super(key: key);
 
@@ -9,31 +11,29 @@ class DropdownButtonExample extends StatefulWidget {
 
 class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   static const menuItems = <String>[
-   "Karışık Pizza",
-                  "Pastırmalı Pizza",
-                  "Mexico Pizza",
-                  "İtalyan Pizza",
-                  "Anadolu Pizza",
-                  "Vejeteryan Pizza"
+    'One',
+    'Two',
+    'Three',
+    'Four',
   ];
   final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
       .map(
         (String value) => DropdownMenuItem<String>(
-      value: value,
-      child: Text(value),
-    ),
-  )
+          value: value,
+          child: Text(value),
+        ),
+      )
       .toList();
   final List<PopupMenuItem<String>> _popUpMenuItems = menuItems
       .map(
         (String value) => PopupMenuItem<String>(
-      value: value,
-      child: Text(value),
-    ),
-  )
+          value: value,
+          child: Text(value),
+        ),
+      )
       .toList();
 
-  String _btn1SelectedVal = 'Karışık Pizza';
+  String _btn1SelectedVal = 'One';
   String _btn2SelectedVal;
   String _btn3SelectedVal;
 
@@ -41,14 +41,8 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Text('Üzerine tıkladığımız zaman açılan ve içerisinde seçim yaptığımız buton türlerini görmüşsünüzdür.'
-          ' Flutter’da bu buton türünün ismi Dropdown Button olarak karşımıza çıkıyor.'
-          ' Bizde pizza seçimi yaptıran bir dropdown button örneğini şimdi beraber yapalım.',style: TextStyle(fontSize: 16),),
-        ),
         ListTile(
-          title: Text('DropDownButton:'),
+          title: const Text('DropDownButton with default:'),
           trailing: DropdownButton<String>(
             // Must be one of items.value.
             value: _btn1SelectedVal,
@@ -61,26 +55,26 @@ class _DropdownButtonExampleState extends State<DropdownButtonExample> {
           ),
         ),
         ListTile(
-          title: Text('DropDownButton + hint:'),
+          title: const Text('DropDownButton with hint:'),
           trailing: DropdownButton(
             value: _btn2SelectedVal,
-            hint: Text('Seç'),
-            onChanged: ((String newValue) {
+            hint: const Text('Choose'),
+            onChanged: (String newValue) {
               setState(() {
                 _btn2SelectedVal = newValue;
               });
-            }),
+            },
             items: _dropDownMenuItems,
           ),
         ),
         ListTile(
           title: const Text('Popup menu button:'),
-          trailing: new PopupMenuButton<String>(
+          trailing: PopupMenuButton<String>(
             onSelected: (String newValue) {
               _btn3SelectedVal = newValue;
-              Scaffold.of(context).showSnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('$_btn3SelectedVal'),
+                  content: Text(_btn3SelectedVal),
                 ),
               );
             },

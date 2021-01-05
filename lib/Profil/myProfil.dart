@@ -4,6 +4,7 @@ import 'package:flutter_rehberim/utils/user_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:android_intent/android_intent.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class MyProfil extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile7.dart";
@@ -78,7 +79,7 @@ class UserInfo extends StatelessWidget {
           Card(
             child: Container(
               alignment: Alignment.topLeft,
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(12),
               child: Column(
                 children: <Widget>[
                   Container(
@@ -113,8 +114,18 @@ class UserInfo extends StatelessWidget {
                         },
                         child: ListTile(
                           leading: Icon(Icons.apps),
-                          title: Text("Uygulamalarım"),
+                          title: Text("My apps"),
                         ),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.bug_report),
+                        title: Text('GitHub'),
+                        onTap: () => url_launcher.launch('$GITHUB_URL'),
+                      ),
+                      ListTile(
+                        leading: Icon(Icons.open_in_new),
+                        title: Text('Website'),
+                        onTap: () => url_launcher.launch(AUTHOR_SITE),
                       ),
                       InkWell(
                         onTap: () {
@@ -126,7 +137,7 @@ class UserInfo extends StatelessWidget {
                         },
                         child: ListTile(
                           leading: Icon(Icons.share),
-                          title: Text("Uygulamayı Paylaş"),
+                          title: Text("Share App"),
                         ),
                       ),
                     ],

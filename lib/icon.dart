@@ -6,8 +6,9 @@ import 'package:widget_with_codeview/source_code_view.dart';
 
 class WidgetPage extends StatefulWidget {
   String widgetKey;
+  Color color;
 
-  WidgetPage({this.widgetKey});
+  WidgetPage({this.widgetKey, this.color});
 
   @override
   _WidgetPageState createState() => _WidgetPageState();
@@ -40,6 +41,7 @@ class _WidgetPageState extends State<WidgetPage> {
       length: _kTabs.length,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: widget.color,
           title: Text(widget.widgetKey),
           bottom: TabBar(
             tabs: _kTabs,
@@ -199,6 +201,10 @@ class _WidgetPageState extends State<WidgetPage> {
       return "lib/charts/heatmap_calender.dart";
     } else if (widgetKey == "RadarChart") {
       return "lib/charts/radar_chart.dart";
+    } else if (widgetKey == "ExtendedImage") {
+      return "lib/multimedia/extendedImage.dart";
+    } else if (widgetKey == "VideoPlayer") {
+      return "lib/multimedia/videoPlayer.dart";
     }
   }
 }

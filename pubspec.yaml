@@ -11,7 +11,7 @@ description: Flutter Rehberim ve çalışmalarım.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.1.3+11
+version: 1.1.4+12
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -63,6 +63,8 @@ dependencies:
   graphview: ^0.6.1
   heatmap_calendar: ^1.2.8 
   firebase_admob: 0.9.3+4
+  package_info: ^0.4.3+2
+  # extended_image: ^1.3.1-dev
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +95,7 @@ flutter:
     - lib/plugins/
     - lib/state_management/
     - lib/charts/
+    - lib/multimedia/
     - assets/db/notlar.db
 
   # An image asset can refer to one or more resolution-specific "variants", see
